@@ -6,7 +6,7 @@ const MongoTodoRepository = require('./adapters/mongoTodoRepository');
 const TodoModel = require('./adapters/todoModel');
 const todoRoutes = require('./adapters/todoRoutes');
 const dotenv = require('dotenv');
-
+const logger = require('./utils/logger')
 dotenv.config()
 
 // Set up the Express app
@@ -44,7 +44,7 @@ const todoRepository = new MongoTodoRepository(todoModel);
 const todoService = new TodoService(todoRepository);
 
 // Set the port no
-app.set("port", process.env.PORT );
+app.set("port", process.env.PORT);
 
 // Set up the Todo routes
 app.use('/todos', todoRoutes(todoService));
